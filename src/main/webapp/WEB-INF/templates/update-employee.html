@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Employee</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0eafc, #cfdef3);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            position: absolute;
+            top: 25%;
+            color: #2c3e50;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        form {
+            background: white;
+            width: 100%;
+            max-width: 450px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 1px solid #d0d7de;
+            border-radius: 7px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+
+        input[readonly] {
+            background: #f0f2f5;
+            color: #777;
+            cursor: not-allowed;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2176ae;
+        }
+
+        @media (max-width: 480px) {
+            form {
+                padding: 22px;
+            }
+
+            h1 {
+                top: 15%;
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>Update Employee</h1>
+<form th:action="@{/employee/modify}" method="post" th:object="${employee}">
+    <label for="id">Id</label>
+    <input type="number" id="id" name="id" th:value="*{id}" readonly>
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" th:value="*{name}" required>
+    <br>
+    <label for="branch">Branch</label>
+    <input id="branch" type="text" name="branch" th:value="*{branch}" required >
+    <br>
+    <label for="salary">Salary</label>
+    <input id="salary" type="text" name="salary" th:value="*{salary}" required >
+    <br>
+    <button type="submit">Submit</button>
+    <a th:href="@{/employees}"></a>
+</form>
+</body>
+</html>
